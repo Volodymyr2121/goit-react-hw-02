@@ -29,12 +29,13 @@ export default function App() {
     };
     
     const totalFeedBack = feedback.good + feedback.neutral + feedback.bad;
+    const positive = Math.round(((feedback.good + feedback.neutral) / totalFeedBack) * 100)
     const handReset = () => setFeedback(initialState);
 
     
     return (<>
         <Description />
         <Options updateFeedback={handFeedback} reset={handReset} feedback={feedback}/>
-        {totalFeedBack > 0 ? <Feedback feedback={feedback} totalFeedBack={ totalFeedBack} /> : <Notification message="No feetback yet"/>} 
+        {totalFeedBack > 0 ? <Feedback positive={positive} feedback={feedback} totalFeedBack={ totalFeedBack} /> : <Notification/>} 
        </> )
 }
